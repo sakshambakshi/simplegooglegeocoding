@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Enter your Key down in script tag 
+    </h1>
+    <input type="text" id="address">
+    <button onclick="initMap()" type="submit">Submit</button>
+    
+    <div id="info">
+
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function initMap(){
+        console.log(document.getElementById('address').value)
+       let geocoder = new google.maps.Geocoder();
+        console.log(geocoder);
+        geocoder.geocode({'address': document.getElementById('address').value} , function(results, status ){
+            console.log(status);
+            if(status === 'OK'){
+                document.getElementById('info').innerText = JSON.stringify(results[0]);
+                console.log(results[0].geometry.location.lat()+" "+results[0].geometry.location.lng())
+            }
+        })
+    }
+</script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHQj7lDDC7EVxMTGE3HXvSvc8C-eWb9ZU&libraries=places&callback=init" async defer></script> -->
+<script 
+    src=`https://maps.googleapis.com/maps/api/js?key= $ { Your key }=initMap` async defer ></script>
+</html>
